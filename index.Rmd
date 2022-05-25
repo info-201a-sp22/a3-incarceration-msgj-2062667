@@ -5,67 +5,49 @@ output: html_document
 
 ### Introduction
 
-An introduction of the problem domain and a description of the variable(s) you are choosing to analyze (and why!)
+In assignment 3, I will be discovering the patterns and changes of different genders in terms of the jail rates. Learning thees patterns can help us know the social stability changes in the United States overtime. We can also has a better understanding of the gender discrimination of the Justice system across country. The variables that I chose are the `male_pop_jail_rate`, `female_pop_jail_rate`, `total_jail_pop_rate`, `state`, and `county_name`. The `male_pop_jail_rate` is the jail rate of the male population. `female_pop_jail_rate` is the jail rate for the female population. The `total_jail_pop_rate` is the total population. I can use the variables above to calculate the mean, max, minimum value.
+
 
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
+```{r, echo=FALSE, message=FALSE}
+source("./summary.R")
+```
 
-These will likely be calculated using your DPLYR skills, answering questions such as: 
+From my findings, I found that the total jail rate of 2018 is `r report$total_jail_pop_rate_2018`, which is almost 3 times the total jail rate of the year 1990 (`r report$total_jail_pop_rate_1990`). I also found that the jail rate of males in prison greatly differ from the jail rate of females in the United States. The mean jail rate of male in the most recent date in 2018 is `r report$male_jail_pop_rate_2018`, compared to the jail rate of female, which is `r report$female_jail_pop_rate_2018`. Lastly, I found out that the state of the most jail population rate has always been Texas. In 1990, the region that has the most jail rate is `r report$max_jail_pop_rate_1990`; In 2018, the region that has the most jail rate is `r report$max_jail_pop_rate_2018`.
 
-- What is the average value of my variable across all the counties (in the current year)?
-- Where is my variable the highest / lowest?
-- How much has my variable change over the last N years?
-
-Feel free to calculate and report values that you find relevant. Again, remember that the purpose is to think about how these measure of incarceration vary by race.
 
 ### The Dataset
 
-Who collected the data?  
-How was the data collected or generated?  
-Why was the data collected?  
-How many observations (rows) are in your data?  
-How many features (columns) are in the data?  
-What, if any, ethical questions or questions of power do you need to consider when working with this data?  
-What are possible limitations or problems with this data?   (at least 200 words)
-
+The data was collected by Vera Institute of Justice. The data from the BJS Census of Jails, Annual Survey of Jails and DRCP. Vera Institute of Justice created this dataset for the public interest in order to help understand, explain, and disrupt the criminal legal and immigration systems and their devastating impacts. Vera institute want to find the county-level variability in incarceration rates in the United States. There are 91031 observations in this data, with 23 unique features. When we are manipulating the data set, we should make our conclusion based on several tests rather than a single graph or a correlation test. A limitation of the data set is the number of N/A values there are present in the data, it is probably because of the date. Back to 1990s, it is somewhat hard for people to keep track of the jail and prison data and there's also a possibility that the data from that time is imprecise and even wrong. I think the ethical concerns of the dataset is the way they collected the data, we should be careful with writing conclusions regarding the gender and race, we should provide explanations with the consideration of the data set's definition of gender and race.
 
 ### Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
-
-The first chart that you will create and include will show the trend over time of your variable/topic. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - This may mean showing the same measure for different locations or different racial groups. Think carefully about a meaningful comparison of locations (e.g., the top 10 counties in a state, top 10 states, etc.)
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart1_example.R")}
+```{r, echo = FALSE, warning = FALSE, message = FALSE, error = FALSE, message = FALSE, code = readLines("chart1.R"), fig.width = 10, fig.height = 5}
 ```
+
+The first chart depicts the trends of jail rate of male and female overtime(1990-2018). The purpose of the chart is to show the trends of the jail rate in terms of different genders. Through the tends we can clear see the changes and the amount disparities between male and female in jail rates across country. Putting two gender's trend in one graph can allow us to understand the potential relationship between the jail rates of two genders. Besides, we may also derive and associate possible national events that might influenced the rates of incarceration for different genders.
+
+Through the trend we can see that the increase rate for both gender is quite high before the year 2006; after 2006, both of the gender's jail rate decrease for about 5 years, and the jail rate started to rise again after the year 2011. In general, the change of male jail rate is quiet dramatic compared to the female jail rate.
 
 ### Variable Comparison Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+```{r, echo = FALSE, warning = FALSE, message = FALSE, error = FALSE, message = FALSE, code = readLines("chart2.R"), fig.width = 10, fig.height = 5}
+```
 
-The second chart that you will create and include will show how two different (continuous) variables are related to one another. Again, think carefully about what such a comparison means and what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
+The second chart depicts the relationship between the total jail rate and female's/male's jail rate.
 
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- If you choose to add a color encoding (not required), you need a legend for your different color and a clear legend title
+The side-by-side scatter plot allow us to identify the difference more clearly and to make conclusions about any increase/decrease in a gender in jail would just simply be due to an overall increase in that gender in the total population.
+
+Through the chart we can notice that as the total number of the jail population grow, the jail rate of male increases much more dramatic than the jail rate of female. In general, all of the variables are positively correlated.
+
 
 ### Map
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+This map portrays the jail rate of male in the United States in 2018 by state. 
 
-The last chart that you will create and include will show how a variable is distributed geographically. Again, think carefully about what such a comparison means and what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
+I pick the year 2018 in order to see and evaluate the current societal stability in the United States. Based on the map below, it seems like the number of male people incarcerated is the highest in Montana and Wyoming. And the map patterns shows that the states in the middle part and south part has more male people in Jail. It seems like the Republican's states have more jail rate than the Democrat's states. Therefore, we can infer that the male crime rate of the republican state is higher than the Democratic states.
 
-- Your map needs a title
-- Your color scale needs a legend with a clear label
-- Use a map based coordinate system to set the aspect ratio of your map
+```{r, echo = FALSE, warning = FALSE, message = FALSE, error = FALSE, message = FALSE, code = readLines("map.R"), fig.width = 10, fig.height = 5}
+```
 
